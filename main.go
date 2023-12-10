@@ -36,13 +36,16 @@ func main() {
 		`"status":${status},"error":"${error}","latency":${latency},"latency_human":"${latency_human}"` +
 		`,"bytes_in":${bytes_in},"bytes_out":${bytes_out}}` + "\n",
 		CustomTimeFormat: "2006-01-02 15:04:05.00000"}))
+
 	e.Use(echoprometheus.NewMiddlewareWithConfig(echoprometheus.MiddlewareConfig{
+		Subsystem: "simpleapp",
 		LabelFuncs: map[string]echoprometheus.LabelValueFunc{
 			"app": func(c echo.Context, err error) string { // additional custom label
 				return "simple-app"
 			},
 		},
 	}))
+
 	e.Use(middleware.Recover())
 
 	// Routes

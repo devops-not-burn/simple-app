@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/signal"
 	"time"
+	"example-app/redis"
 )
 
 type Info struct {
@@ -54,6 +55,8 @@ func main() {
 	e.GET("/version", version)
 	e.GET("/ready", ready)
 	e.GET("/alive", alive)
+	e.GET("/redisget", redis.Getfromredis)
+	e.PUT("/redisput", redis.Puttoredis)
 
 	e.Logger.SetLevel(log.INFO)
 	// Start server

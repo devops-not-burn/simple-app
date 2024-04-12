@@ -1,0 +1,11 @@
+groups:
+  - name: example
+    rules:
+      - alert: esimpleAppdown
+        expr: up{job="simple-app"} != 1
+        for: 15s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 15s"

@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   postgresql-exporter:
     image: quay.io/prometheuscommunity/postgres-exporter
@@ -13,7 +11,7 @@ services:
           - postgresql-exporter
 
   prometheus:
-    image: prom/prometheus:v2.53.0
+    image: prom/prometheus:v2.53.2
     volumes:
       - ./observability/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./observability/monitoring/prometheus/rules.yml:/etc/prometheus/rules.yml
@@ -25,7 +23,7 @@ services:
           - prometheus
 
   grafana:
-    image: grafana/grafana:11.0.0
+    image: grafana/grafana:11.1.1
     ports:
       - 3000:3000
     volumes:
@@ -36,7 +34,7 @@ services:
           - grafana
 
   victoriametrics:
-    image: victoriametrics/victoria-metrics:v1.101.0
+    image: victoriametrics/victoria-metrics:v1.102.1
     ports:
       - 8428:8428
     networks:

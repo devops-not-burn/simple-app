@@ -11,7 +11,7 @@ services:
           - postgresql-exporter
 
   prometheus:
-    image: prom/prometheus:v2.53.2
+    image: prom/prometheus:v3.0.1
     volumes:
       - ./observability/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./observability/monitoring/prometheus/rules.yml:/etc/prometheus/rules.yml
@@ -23,7 +23,7 @@ services:
           - prometheus
 
   grafana:
-    image: grafana/grafana:11.1.1
+    image: grafana/grafana:11.4.0
     ports:
       - 3000:3000
     volumes:
@@ -34,7 +34,7 @@ services:
           - grafana
 
   victoriametrics:
-    image: victoriametrics/victoria-metrics:v1.102.1
+    image: victoriametrics/victoria-metrics:v1.107.0
     ports:
       - 8428:8428
     networks:
